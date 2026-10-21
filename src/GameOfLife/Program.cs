@@ -5,20 +5,25 @@ public static class Program
 
     public static int Main()
     {
-/*         HashSet<(long X, long Y)> live = new();
-        
-        live.Add((0,1));
-        live.Add((1, 2));
-        live.Add((2, 0));
+        HashSet<(long X, long Y)> live = new();
+
+        try
+        {
+            live = Life106.Parse(Console.In);
+        }
+        catch(FormatException ex)
+        {
+            Console.Error.WriteLine($"Invalid input: {ex.Message}");
+            return 1;
+        }
 
         for(int gen = 1; gen <= GENERATIONS; gen++)
         {
             live = Step(live);
+        }
 
-            Console.WriteLine($"{live.Count}");
-        } */
+        Life106.Write(Console.Out, live);
         return 0;
-
     }
     /// <summary>
     /// Find 8 neighbours where possible. On edge and corner finds 5 and 3 respectively.
